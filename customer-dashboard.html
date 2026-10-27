@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ResolveAI | Customer Dashboard</title>
+    <meta name="theme-color" content="#245cff">
+    <meta name="description" content="Submit and track your ResolveAI complaints.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/customer-dashboard.css">
+</head>
+
+<body id="top">
+
+    <!-- TOP NAVIGATION -->
+    <header class="topbar">
+        <a href="#top" class="brand" style="text-decoration:none;color:inherit" aria-label="ResolveAI home">
+            <div class="brand-icon">R</div>
+            <div class="brand-name">Resolve<span>AI</span></div>
+        </a>
+
+        <div class="top-actions">
+            <div class="user-chip">
+                <div class="avatar" id="userAvatar">C</div>
+                <div class="user-details">
+                    <strong id="topCustomerName">Customer</strong>
+                    <span>Customer Workspace</span>
+                </div>
+            </div>
+
+            <button class="btn btn-outline btn-logout" id="logoutBtn" type="button">
+                ↗ Logout
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- WELCOME BANNER -->
+        <section class="welcome">
+            <div class="welcome-content">
+                <div class="eyebrow">YOUR PERSONAL WORKSPACE</div>
+                <h1 id="welcomeText">Welcome back!</h1>
+                <p>
+                    Your concerns matter. Submit a complaint, follow its progress,
+                    and check your complaint updates in one place.
+                </p>
+            </div>
+
+            <div class="welcome-badge">✦ Smart Support Workspace</div>
+        </section>
+
+        <!-- OVERVIEW -->
+        <div class="section-heading" id="overview">
+            <div>
+                <h2>Your Overview</h2>
+                <p>A quick look at your complaint activity.</p>
+            </div>
+
+            <button class="btn btn-outline" id="refreshBtn" type="button">
+                ↻ Refresh
+            </button>
+        </div>
+
+        <section class="stats" aria-label="Complaint statistics">
+
+            <article class="stat-card">
+                <div class="stat-icon stat-blue">▤</div>
+                <div>
+                    <div class="stat-label">Total Complaints</div>
+                    <div class="stat-value" id="totalCount">0</div>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon stat-orange">⚑</div>
+                <div>
+                    <div class="stat-label">High Priority</div>
+                    <div class="stat-value" id="highCount">0</div>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon stat-green">✉</div>
+                <div>
+                    <div class="stat-label">Email Sent</div>
+                    <div class="stat-value" id="emailCount">0</div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- COMPLAINT WORKSPACE -->
+        <div class="section-heading" id="workspace">
+            <div>
+                <h2>Complaint Workspace</h2>
+                <p>Tell us about your issue and keep track of your submissions.</p>
+            </div>
+        </div>
+
+        <section class="main-grid">
+
+            <!-- SUBMIT COMPLAINT -->
+            <article class="panel" id="newComplaint">
+                <div class="panel-title">✦ Submit a Complaint</div>
+                <p class="panel-description">
+                    Your account details are filled automatically.
+                    Enter the product name and explain your issue clearly.
+                </p>
+
+                <form id="complaintForm" class="complaint-form">
+
+                    <div class="form-group">
+                        <label for="customerName">Customer Name</label>
+                        <input
+                            id="customerName"
+                            name="customerName"
+                            type="text"
+                            placeholder="Your full name"
+                            autocomplete="name"
+                            readonly
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerEmail">Email ID</label>
+                        <input
+                            id="customerEmail"
+                            name="customerEmail"
+                            type="email"
+                            placeholder="Your registered email"
+                            autocomplete="email"
+                            readonly
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product">Product</label>
+                        <input
+                            id="product"
+                            name="product"
+                            type="text"
+                            placeholder="e.g. Headphones, Laptop, Mobile"
+                            maxlength="120"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="complaint">Complaint Description</label>
+                        <textarea
+                            id="complaint"
+                            name="complaint"
+                            placeholder="Describe your issue clearly. Include what happened and when you noticed it..."
+                            maxlength="5000"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button class="btn btn-primary full-width" id="submitBtn" type="submit">
+                        Submit Complaint →
+                    </button>
+
+                    <p class="message" id="formMessage" role="status" aria-live="polite"></p>
+                </form>
+            </article>
+
+            <!-- COMPLAINT HISTORY -->
+            <article class="panel" id="complaintHistory">
+                <div class="panel-title">▤ Your Complaint History</div>
+                <p class="panel-description">
+                    Review complaints submitted from your account and check their current status.
+                </p>
+
+                <div id="listMessage" class="table-message" role="status" aria-live="polite"></div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Complaint ID</th>
+                                <th>Product</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="complaintsBody">
+                            <tr>
+                                <td colspan="4" class="empty-state">
+                                    Your complaint history will appear here.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+        </section>
+
+        <footer>
+            <strong>ResolveAI</strong> · Intelligent Complaint Resolution
+            <br>
+            A unified workspace for submitting and tracking customer concerns.
+        </footer>
+
+    </main>
+
+    <!-- FLOATING SHORTCUTS -->
+    <nav class="floating-actions" aria-label="Quick navigation">
+
+        <button
+            class="float-btn"
+            id="floatNewComplaint"
+            type="button"
+            title="Go to complaint form"
+        >
+            <span class="float-symbol">＋</span>
+            <span>New Complaint</span>
+        </button>
+
+        <button
+            class="float-btn float-cyan"
+            id="floatComplaintHistory"
+            type="button"
+            title="View complaint history"
+        >
+            <span class="float-symbol">▤</span>
+            <span>Complaint History</span>
+        </button>
+
+        <button
+            class="float-btn float-light"
+            id="floatBackToTop"
+            type="button"
+            title="Back to top"
+        >
+            <span class="float-symbol">↑</span>
+            <span>Back to Top</span>
+        </button>
+
+    </nav>
+
+    <!-- KEEP THE EXISTING DASHBOARD LOGIC -->
+    <script src="js/customer-dashboard.js"></script>
+
+    <!-- FLOATING BUTTON ACTIONS -->
+    <script>
+        document.getElementById("floatNewComplaint").addEventListener("click", () => {
+            document.getElementById("newComplaint").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            window.setTimeout(() => {
+                document.getElementById("product").focus({ preventScroll: true });
+            }, 450);
+        });
+
+        document.getElementById("floatComplaintHistory").addEventListener("click", () => {
+            document.getElementById("complaintHistory").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        });
+
+        document.getElementById("floatBackToTop").addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+
+</body>
+</html>

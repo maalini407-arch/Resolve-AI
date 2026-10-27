@@ -1,0 +1,177 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f8ff">
+    <title>ResolveAI | Intelligent Complaint Resolution</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/auth.js" defer></script>
+</head>
+<body>
+    <main class="page">
+        <section class="visual-panel">
+            <a class="brand" href="index.html">
+                <span class="brand-icon">R<span>.</span></span>
+                <span>ResolveAI</span>
+            </a>
+
+            <div class="visual-content">
+                <div class="eyebrow">
+                    <span class="live-dot"></span>
+                    SMARTER CUSTOMER SUPPORT
+                </div>
+
+                <h1>Every complaint<br>deserves a <span>resolution.</span></h1>
+
+                <p>
+                    Intelligent complaint management that analyses customer
+                    issues and delivers automated responses in one place.
+                </p>
+
+                <div class="feature-list">
+                    <div class="feature">
+                        <span class="feature-icon">✦</span>
+                        <div>
+                            <strong>Intelligent analysis</strong>
+                            <small>Understand and categorize complaints.</small>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">↗</span>
+                        <div>
+                            <strong>Automated email responses</strong>
+                            <small>Receive AI-generated responses by email.</small>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">◎</span>
+                        <div>
+                            <strong>Personal complaint workspace</strong>
+                            <small>Submit complaints and track their status.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="visual-footer">
+                RESOLVEAI · INTELLIGENT COMPLAINT RESOLUTION
+            </p>
+        </section>
+
+        <section class="form-panel">
+            <div class="form-wrap">
+                <div class="mobile-brand">
+                    <span class="brand-icon">R<span>.</span></span>
+                    <strong>ResolveAI</strong>
+                </div>
+
+                <div class="form-heading">
+                    <span class="eyebrow" id="eyebrow">
+                        WELCOME TO RESOLVEAI
+                    </span>
+                    <h2 id="heading">Your resolution starts here.</h2>
+                    <p id="subtitle">
+                        Sign in to access your complaint workspace.
+                    </p>
+                </div>
+
+                <form id="authForm">
+                    <div class="field">
+                        <label for="role">Account type</label>
+                        <select id="role" name="role" required>
+                            <option value="Customer" selected>Customer</option>
+                        </select>
+                    </div>
+
+                    <div class="field" id="nameField" hidden>
+                        <label for="name">Full name</label>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            maxlength="100"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="email">Email address</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            minlength="8"
+                            maxlength="128"
+                            required
+                        >
+                    </div>
+
+                    <div class="field" id="confirmField" hidden>
+                        <label for="confirmPassword">Confirm password</label>
+                        <input
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            type="password"
+                            placeholder="Re-enter your password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            maxlength="128"
+                        >
+                    </div>
+
+                    <p
+                        class="form-message"
+                        id="message"
+                        role="status"
+                        aria-live="polite"
+                    ></p>
+
+                    <button
+                        class="primary-button"
+                        id="submitButton"
+                        type="submit"
+                    >
+                        <span id="buttonLabel">Sign In</span>
+                        <span aria-hidden="true">→</span>
+                    </button>
+                </form>
+
+                <p class="switch-copy" id="switchCopy">
+                    New to ResolveAI?
+                    <button
+                        type="button"
+                        class="text-button"
+                        id="switchButton"
+                    >
+                        Create an account
+                    </button>
+                </p>
+
+                <div class="security-note">
+                    <span>◈</span>
+                    Your workspace is protected by account authentication.
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
